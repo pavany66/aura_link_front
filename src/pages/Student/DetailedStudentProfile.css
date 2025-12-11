@@ -1,0 +1,75 @@
+/* src/components/DetailedStudentProfile.css */
+
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-heading {
+    color: #00bcd4; /* A vibrant blue-green color */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-card {
+    background-color: #242424;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #00bcd4;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #333;
+}
+
+.label {
+    font-weight: bold;
+    color: #a0a0a0;
+}
+
+.value {
+    color: #e0e0e0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.id-card-image-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.id-card-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .profile-card {
+        padding: 15px;
+    }
+    .profile-heading {
+        font-size: 1.5rem;
+    }
+}

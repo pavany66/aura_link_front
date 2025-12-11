@@ -1,0 +1,222 @@
+:root {
+    --neon-cyan: #00ffff;
+    --neon-cyan-dark: #00cccc;
+    --text-color-dark: #000;
+    --text-color-light: #fff;
+    --background-dark: #1a1a1a;
+    --card-background: #2a2a2a;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--background-dark);
+    font-family: 'Arial', sans-serif;
+}
+
+
+/* Base styles for the entire page */
+
+.landing-page {
+    color: var(--text-color-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+
+/* Background image container for parallax effect */
+
+.background-image-container {
+    background-image: url("../../public/Background.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: fixed;
+    /* Fixes the background to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    /* Ensures it stays behind other content */
+    will-change: transform;
+    /* Optimizes for smooth animation */
+}
+
+
+/* Semi-transparent overlay for readability */
+
+.overlay-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Navigation bar styling */
+
+.navbar {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--neon-cyan);
+}
+
+
+/* Neon glow buttons */
+
+.register-button,
+.neon-button {
+    background-color: var(--neon-cyan);
+    color: var(--text-color-dark);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan-dark);
+}
+
+.register-button:hover,
+.neon-button:hover {
+    background-color: var(--neon-cyan-dark);
+    box-shadow: 0 0 15px var(--neon-cyan-dark), 0 0 30px var(--neon-cyan);
+}
+
+
+/* Hero section with animated text */
+
+.hero-section {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+
+/* Brand name styling */
+
+.brand-name {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 0.2s;
+}
+
+.hero-section h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 0.5s;
+}
+
+.hero-section p {
+    font-size: 1.5em;
+    max-width: 800px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 1s;
+}
+
+
+/* Main content sections below the hero */
+
+.section {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: var(--background-dark);
+    border-top: 1px solid #333;
+}
+
+.section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--neon-cyan);
+}
+
+.section p {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    font-size: 1.1em;
+    color: #ccc;
+}
+
+
+/* Contact form styling */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: var(--card-background);
+    color: var(--text-color-light);
+    font-size: 1em;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #aaa;
+}
+
+
+/* Keyframe animation for text fade-in */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

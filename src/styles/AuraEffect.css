@@ -1,0 +1,70 @@
+.aura-link-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1; /* Ensure this is above other elements */
+  padding: 20px;
+}
+
+.aura-link-text {
+  font-family: 'Arial', sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #fff;
+  position: relative;
+  text-shadow:
+    0 0 10px rgba(255, 0, 255, 0.8),
+    0 0 20px rgba(255, 0, 255, 0.8),
+    0 0 30px rgba(255, 128, 0, 0.8),
+    0 0 40px rgba(255, 128, 0, 0.8),
+    0 0 50px rgba(255, 255, 0, 0.8),
+    0 0 60px rgba(255, 255, 0, 0.8),
+    0 0 70px rgba(0, 255, 255, 0.8),
+    0 0 80px rgba(0, 255, 255, 0.8);
+  animation: glowPulse 4s infinite ease-in-out alternate;
+}
+
+/* Pseudo-element for the heatwave/shimmering effect */
+.aura-link-text::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at center,
+      rgba(255, 165, 0, 0.4) 0%, 
+      rgba(255, 0, 255, 0.3) 30%, 
+      rgba(0, 255, 255, 0.2) 60%, 
+      rgba(0, 0, 0, 0) 100%);
+  filter: blur(50px);
+  animation: heatwave 5s infinite linear;
+}
+
+/* Keyframes for the heatwave distortion */
+@keyframes heatwave {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.8; }
+  50% { transform: rotate(180deg) scale(1.1); opacity: 1; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.8; }
+}
+
+/* Keyframes for the glowing text pulse */
+@keyframes glowPulse {
+  0% {
+    text-shadow: 
+      0 0 5px rgba(255, 0, 255, 0.5),
+      0 0 10px rgba(255, 128, 0, 0.5),
+      0 0 15px rgba(255, 255, 0, 0.5);
+  }
+  100% {
+    text-shadow: 
+      0 0 20px rgba(255, 0, 255, 0.8),
+      0 0 40px rgba(255, 128, 0, 0.8),
+      0 0 60px rgba(255, 255, 0, 0.8);
+  }
+}
