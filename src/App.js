@@ -25,8 +25,10 @@ function App() {
       {/* --- Student Protected Routes --- */}
       <Route element={<ProtectedRoute role="student" />}>
         <Route path="/student/dashboard" element={<StudentDashboard />} />
-        {/* Removed LobbyPage, pointing live classroom directly to the Room logic if needed, 
-            but usually dynamic ID is better. For now, we rely on the dynamic route below. */}
+        
+        {/* FIX: Re-added this route to match the Sidebar link */}
+        <Route path="/student/live-classroom" element={<RoomPage />} />
+        
         <Route path="/student/library" element={<LibraryPage />} />
         <Route path="/student/profile" element={<ProfilePage />} />
         <Route path="/student/virtual-lab" element={<VirtualLabPage />} />
@@ -45,8 +47,7 @@ function App() {
       
       {/* --- Generic Protected Routes --- */}
       <Route element={<ProtectedRoute />}>
-         {/* The room route handles the video call. 
-             roomId can be '123' or anything generated. */}
+         {/* This handles direct links like /room/123 */}
          <Route path="/room/:roomId" element={<RoomPage />} />
       </Route>
 

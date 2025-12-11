@@ -8,14 +8,16 @@ const RoomPage = () => {
   const { profile } = useAuth();
   const navigate = useNavigate();
 
+  // FIX: Default to '123' if the URL doesn't have an ID (e.g. from Sidebar)
+  const activeRoomId = roomId || '123';
+
   const userId = profile?.id || `user_${Date.now()}`;
   const userName = profile?.full_name || 'Guest Student';
 
   const myMeeting = async (element) => {
-    // --- UPDATED: Read from .env file ---
-    const appID = Number(process.env.REACT_APP_ZEGO_APP_ID); 
+    // Read from .env
+    const appID = Number(process.env.REACT_APP_ZEGO_APP_ID);
     const serverSecret = process.env.REACT_APP_ZEGO_SERVER_SECRET;
-    // ------------------------------------
 
     if (!appID || !serverSecret) {
       console.error("Missing ZegoCloud keys in .env file");
@@ -25,7 +27,7 @@ const RoomPage = () => {
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,
-      roomId,
+      activeRoomId,
       userId,
       userName
     );
@@ -39,6 +41,12 @@ const RoomPage = () => {
       },
       showScreenSharingButton: true,
       showUserList: true,
+      sharedLinks: [
+        {
+          name: 'Class Link',
+          url: window.location.origin + '/room/' + activeRoomId,
+        },
+      ],
       onLeaveRoom: () => {
         navigate(profile?.role === 'admin' ? '/admin/dashboard' : '/student/dashboard');
       },
