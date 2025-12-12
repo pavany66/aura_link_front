@@ -8,26 +8,36 @@ const CodeEditor = ({ defaultLanguage = "python", defaultValue = "" }) => {
   const [output, setOutput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleRunCode = async () => {
+ const handleRunCode = async () => {
     setIsLoading(true);
-    setOutput(""); // Clear previous output
+    setOutput(""); 
     try {
-      // Call our own backend, which then calls JDoodle
-      // Note: We use the full URL if running locally on port 8000, or relative path if deployed
-      const response = await fetch('http://localhost:8000/api/run', {
+      // FIX: Use the Environment Variable instead of hardcoded 'localhost'
+      // This automatically finds the correct server (Render or Local)
+      const backendUrl = process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:8000';
+      
+      const response = await fetch(`${backendUrl}/api/run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ script: code, language: defaultLanguage }),
       });
 
       const data = await response.json();
-      setOutput(data.output);
+      
+      // Handle server-side errors (like compilation failures) gracefully
+      if (response.status !== 200) {
+          setOutput(data.error || data.output || "Code execution failed.");
+      } else {
+          setOutput(data.output);
+      }
+
     } catch (error) {
-      setOutput("Error connecting to server.");
+      console.error("Execution Error:", error);
+      setOutput("Error connecting to server. Is the backend running?");
     } finally {
       setIsLoading(false);
     }
-  };
+};
 
   return (
     <Paper elevation={3} sx={{ p: 2, bgcolor: '#1e1e1e', color: 'white', borderRadius: 2 }}>
